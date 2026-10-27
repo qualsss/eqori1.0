@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="style.css">
+    <title>EQORI — питание и лекарства при диабете, гипертонии и подагре</title>
+    <meta name="description"
+        content="EQORI — бесплатный помощник для людей с диабетом, гипертонией и подагрой: что можно есть именно вам, напоминания о лекарствах, динамика веса и мягкий недельный отчёт.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#F5F5F7">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="EQORI — питание и лекарства под контролем">
+    <meta property="og:description"
+        content="Помощник для людей с диабетом, гипертонией и подагрой. Все диагнозы учитываются сразу.">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"EQORI","applicationCategory":"HealthApplication","operatingSystem":"Any","inLanguage":"ru","description":"Помощник по питанию и лекарствам для людей с диабетом, гипертонией и подагрой.","offers":{"@type":"Offer","price":"0","priceCurrency":"KZT"}}</script>
+</head>
+
+<body>
+    <header class="top">
+        <div class="wrap">
+            <button class="logo" onclick="home()"><i></i>EQORI</button>
+            <div style="display:flex;align-items:center;gap:2px">
+                <nav id="nav"></nav><button class="lk" onclick="theme()" aria-label="Сменить тему"><svg width="18"
+                        height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" />
+                    </svg></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="land">
+        <section class="hero">
+            <div class="wrap">
+                <h1>Питание и лекарства.<br>Под контролем.</h1>
+                <p class="lead">EQORI — бесплатный помощник для людей с диабетом, гипертонией и подагрой. Показывает,
+                    что можно есть именно вам, и напоминает о лекарствах.</p>
+                <div class="cta"><button class="btn big" onclick="openM('reg')">Начать бесплатно</button><button
+                        class="lk" onclick="go('features')">Узнать больше ›</button></div>
+                <div class="card mock" aria-label="Пример экрана «Мой день»">
+                    <h3>Мой день</h3>
+                    <div class="row"><span>Сахар</span><span>31 из 50 г</span></div>
+                    <div class="bar"><b style="width:62%"></b></div>
+                    <div class="row"><span>Натрий</span><span>1 720 из 2 000 мг</span></div>
+                    <div class="bar"><b class="w" style="width:86%"></b></div>
+                    <div class="row"><span>Пурины</span><span>140 из 400 мг</span></div>
+                    <div class="bar"><b style="width:35%"></b></div>
+                    <p class="mut" style="margin:16px 0 0;font-size:.9rem">Лекарства: 2 из 3 приняты. Вечерняя таблетка
+                        в 20:00.</p>
+                </div>
+            </div>
+        </section>
+        <section id="features">
+            <div class="wrap">
+                <h2 class="c">Всё нужное. Ничего лишнего.</h2>
+                <div class="tiles">
+                    <article class="tile wide dark">
+                        <h3>Все диагнозы сразу</h3>
+                        <p>Отметьте диабет, гипертонию и подагру в любом сочетании. Советы больше не противоречат друг
+                            другу.</p>
+                    </article>
+                    <article class="tile c1">
+                        <h3>Только важное</h3>
+                        <p>Сахар, натрий и пурины. Только те показатели, которые касаются вас.</p>
+                    </article>
+                    <article class="tile c2">
+                        <h3>Понятный справочник</h3>
+                        <p>Каждый продукт отмечен «подходит» или «осторожно» для вашей комбинации диагнозов.</p>
+                    </article>
+                    <article class="tile c3">
+                        <h3>Лекарства без пропусков</h3>
+                        <p>Время приёма, отметки одним касанием и напоминания.</p>
+                    </article>
+                    <article class="tile c4">
+                        <h3>Вопрос — и ответ</h3>
+                        <p>Спросите в чате, можно ли вам то или иное блюдо.</p>
+                    </article>
+                    <article class="tile wide c2">
+                        <h3>Вес и мягкий отчёт</h3>
+                        <p>Динамика веса со справочным диапазоном ИМТ по ВОЗ. Раз в неделю — спокойный отчёт без оценок
+                            и давления.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="band">
+            <div class="wrap">
+                <h2>Весь день — на одном экране</h2>
+                <p class="lead mut">Три кольца показывают, сколько сахара, натрия и пуринов уже набралось и сколько ещё
+                    можно.</p>
+                <div class="rings demo" id="demoR" style="max-width:640px;margin:36px auto 0"></div>
+            </div>
+        </section>
+        <section id="start" style="background:var(--c3)">
+            <div class="wrap c">
+                <h2>Начать можно за минуту</h2>
+                <div class="steps" style="text-align:left">
+                    <div class="tile" style="background:var(--card);min-height:0;padding:26px">
+                        <h3>1. Создайте аккаунт</h3>
+                        <p>Имя, email и пароль. Ничего лишнего.</p>
+                    </div>
+                    <div class="tile" style="background:var(--card);min-height:0;padding:26px">
+                        <h3>2. Отметьте диагнозы</h3>
+                        <p>И укажите рост и вес.</p>
+                    </div>
+                    <div class="tile" style="background:var(--card);min-height:0;padding:26px">
+                        <h3>3. Ведите день</h3>
+                        <p>Питание, лекарства, вес — в одном месте.</p>
+                    </div>
+                </div>
+                <div class="cta"><button class="btn big" onclick="openM('reg')">Начать бесплатно</button></div>
+            </div>
+        </section>
+        <footer>
+            <div class="wrap">
+                <p>EQORI — справочный сервис. Он не ставит диагнозы и не заменяет консультацию врача.</p>
+                <details>
+                    <summary>Конфиденциальность и условия</summary>
+                    <p style="margin-top:8px">Ваши данные хранятся только в вашем браузере и не отправляются на сервер.
+                        Очистка данных браузера удалит записи. Справочные значения приблизительны. При ухудшении
+                        самочувствия обратитесь к врачу.</p>
+                </details>
+                <p style="margin-top:12px">© EQORI</p>
+            </div>
+        </footer>
+    </main>
+
+    <main id="app" hidden>
+        <div class="wrap" id="appin"></div>
+    </main>
+
+    <div id="wz" class="modal" hidden></div>
+    <div id="modal" class="modal" hidden>
+        <div class="card">
+            <h3 id="mt"></h3>
+            <label id="nml">Имя</label><input id="nm" autocomplete="name">
+            <label>Email</label><input id="em" type="email" autocomplete="email">
+            <label>Пароль</label><input id="pw" type="password" autocomplete="current-password">
+            <div class="err" id="err"></div>
+            <p class="mut" style="font-size:.8rem;margin:0">Данные хранятся только в вашем браузере. EQORI — справочный
+                сервис, не медицинская рекомендация.</p>
+            <div class="cta" style="margin-top:8px"><button class="btn" id="ok" onclick="submitA()"></button><button
+                    class="btn sec" onclick="closeM()">Отмена</button></div>
+            <p style="margin:14px 0 0"><button class="lk" id="sw" onclick="swM()" style="padding:0"></button></p>
+        </div>
+    </div>
+
+    <script>
+        const $ = q => document.querySelector(q), K = 'eqori_users', SS = 'eqori_sess', mem = {};
+        const ld = (k, d) => { try { const v = localStorage.getItem(k); if (v !== null) return JSON.parse(v) } catch (e) { } return k in mem ? mem[k] : d };
+        const sv = (k, v) => { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)) } catch (e) { } };
+        const rm = k => { delete mem[k]; try { localStorage.removeItem(k) } catch (e) { } };
+        const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0') };
+        const go = id => { const e = document.getElementById(id); if (e) e.scrollIntoView({ behavior: 'smooth' }) };
+        async function hs(s) { try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('') } catch (e) { return btoa(unescape(encodeURIComponent(s))) } }
+
+        const M = { s: { n: 'Сахар', u: 'г', max: 50, dx: 'd', th: 15 }, na: { n: 'Натрий', u: 'мг', max: 2000, dx: 'g', th: 500 }, p: { n: 'Пурины', u: 'мг', max: 400, dx: 'p', th: 150 } };
+        const DXN = { d: 'Диабет 2 типа', g: 'Гипертония', p: 'Подагра' };
+        // название, сахар г, натрий мг, пурины мг, ключевые основы для чата
+        const FOODS = [["Гречневая каша, 150 г", 2, 10, 40, "греч"], ["Овсянка на воде, 200 г", 1, 5, 50, "овсян|овсянк"], ["Куриная грудка, 100 г", 0, 70, 150, "кур|грудк"], ["Говяжья печень, 100 г", 0, 90, 300, "печен"], ["Сельдь солёная, 100 г", 0, 900, 210, "сельд|селёдк|селедк"], ["Яблоко, 1 шт.", 19, 2, 10, "яблок"], ["Белый хлеб, 2 ломтика", 4, 300, 30, "хлеб|батон"], ["Творог 5%, 150 г", 3, 40, 20, "творог"], ["Яйцо варёное, 1 шт.", 0.5, 70, 5, "яйц|яичн"], ["Кефир, 250 мл", 10, 100, 15, "кефир"], ["Пиво, 0,5 л", 4, 15, 70, "пив"], ["Колбаса варёная, 100 г", 2, 900, 100, "колбас|сосис"], ["Огурцы, 150 г", 3, 5, 7, "огур"], ["Пирожное, 1 шт.", 35, 100, 20, "пирожн|торт|сладк|конфет|шоколад"]];
+
+        let em = null, S = null, tab = 'day', mode = 'reg';
+        const dflt = () => ({ p: { dx: [], h: 0, done: 0 }, v: [], food: [], meds: [], taken: {}, w: [], chat: [] });
+        const save = () => sv('eqori_d_' + em, S);
+        const act = () => { const a = Object.keys(M).filter(k => S.p.dx.includes(M[k].dx)); return a.length ? a : Object.keys(M) };
+
+        function nav() {
+            $('#nav').innerHTML = em ? `<button class="lk h" onclick="home()">Сайт</button><button class="lk" onclick="logout()">Выйти</button>`
+                : `<button class="lk h" onclick="go('features')">Возможности</button><button class="lk h" onclick="go('start')">Как начать</button><button class="lk" onclick="openM('login')">Войти</button><button class="btn sm" onclick="openM('reg')">Регистрация</button>`
+        }
+        function home() { if (em) { $('#app').hidden = true; $('#land').hidden = false; window.scrollTo(0, 0); $('#nav').innerHTML = `<button class="btn sm" onclick="boot()">Мой кабинет</button><button class="lk" onclick="logout()">Выйти</button>` } else { go('land') } }
+        function openM(m) { mode = m; $('#modal').hidden = false; mU() }
+        function closeM() { $('#modal').hidden = true }
+        function swM() { mode = mode == 'reg' ? 'login' : 'reg'; mU() }
+        function mU() { const r = mode == 'reg'; $('#mt').textContent = r ? 'Создать аккаунт' : 'Вход в EQORI'; $('#nm').hidden = $('#nml').hidden = !r; $('#ok').textContent = r ? 'Зарегистрироваться' : 'Войти'; $('#sw').textContent = r ? 'Уже есть аккаунт? Войти' : 'Нет аккаунта? Зарегистрироваться'; $('#err').textContent = ''; $('#pw').autocomplete = r ? 'new-password' : 'current-password' }
+        const err = t => { $('#err').textContent = t };
+        async function submitA() {
+            const e = $('#em').value.trim().toLowerCase(), p = $('#pw').value, n = $('#nm').value.trim(), u = ld(K, {});
+            if (!/^\S+@\S+\.\S+$/.test(e)) return err('Введите корректный email.');
+            if (p.length < 6) return err('Пароль должен быть не короче 6 символов.');
+            const h = await hs(p);
+            if (mode == 'reg') { if (!n) return err('Введите имя.'); if (u[e]) return err('Этот email уже зарегистрирован. Нажмите «Войти».'); u[e] = { n, h }; sv(K, u) }
+            else if (!u[e] || u[e].h !== h) return err('Неверный email или пароль.');
+            sv(SS, e); closeM(); $('#pw').value = ''; boot()
+        }
+        function logout() { rm(SS); em = null; S = null; $('#app').hidden = true; $('#land').hidden = false; nav(); window.scrollTo(0, 0) }
+        function boot() {
+            em = ld(SS, null); const u = ld(K, {});
+            if (!em || !u[em]) { em = null; nav(); return }
+            S = Object.assign(dflt(), ld('eqori_d_' + em, {})); S.name = u[em].n;
+            $('#land').hidden = true; $('#app').hidden = false; window.scrollTo(0, 0); nav(); if (!S.p) S.p = { dx: [], h: 0, done: 0 }; S.v = S.v || []; if (S.p.dx.length) S.p.done = 1; shell()
+        }
+
+        function verdict(f) {
+            const bad = act().filter(k => f[{ s: 1, na: 2, p: 3 }[k]] >= M[k].th);
+            return bad.length ? { ok: 0, t: `Осторожно: много показателя «${bad.map(k => M[k].n.toLowerCase()).join('», «')}». Лучше небольшая порция или замена.` } : { ok: 1, t: 'Для вашей комбинации диагнозов подходит.' }
+        }
+        function med() {
+            const tk = S.taken[today()] || [];
+            $('#tb').innerHTML = `<div class="card c3"><h3>Добавить лекарство</h3><div class="f"><div><label>Название и дозировка</label><input id="mn" placeholder="Например, Метформин 500 мг"></div><div style="max-width:140px"><label>Время</label><input id="mtm" type="time" value="08:00"></div><button class="btn" onclick="addM()">Добавить</button></div></div>
+ <div class="card" style="margin-top:16px"><h3>Приём сегодня</h3><p class="mut" style="font-size:.9rem">Напоминания работают, пока сайт открыт. <button class="chip" onclick="notif()">Включить уведомления</button></p>${S.meds.length ? S.meds.slice().sort((a, b) => a.t.localeCompare(b.t)).map(m => `<div class="item"><label class="chk" style="margin:0;color:var(--ink)"><input type="checkbox" ${tk.includes(m.id) ? 'checked' : ''} onchange="tgM(${m.id})">${esc(m.n)} · ${m.t}</label><button class="btn sec sm" onclick="delM(${m.id})">Удалить</button></div>`).join('') : '<p class="mut">Добавьте лекарства, и сайт напомнит о приёме, пока страница открыта.</p>'}</div>`
+        }
+        function addM() { const n = $('#mn').value.trim(); if (!n) return; S.meds.push({ id: Date.now(), n, t: $('#mtm').value || '08:00' }); save(); shell() }
+        function delM(id) { S.meds = S.meds.filter(m => m.id != id); save(); shell() }
+        function tgM(id) { const a = S.taken[today()] || []; S.taken[today()] = a.includes(id) ? a.filter(x => x != id) : a.concat(id); save(); shell() }
+
+        function due() { const n = new Date(), hm = String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0'); return S.meds.filter(m => m.t <= hm && !(S.taken[today()] || []).includes(m.id)) }
+        function dueHtml() { const d = due(); return d.length ? `<div class="note red" style="margin:14px 0">Пора принять: ${d.map(m => esc(m.n)).join(', ')}. Отметьте во вкладке «Лекарства».</div>` : '' }
+        function notif() { try { Notification.requestPermission() } catch (e) { } }
+        function tick() { if (!S || !S.p) return; const d = due(), k = today() + d.map(m => m.id).join(); if (d.length && window.Notification && Notification.permission == 'granted' && tick.k !== k) { tick.k = k; try { new Notification('EQORI: время принять лекарство', { body: d.map(x => x.n).join(', ') }) } catch (e) { } } }
+        function reply(q) {
+            q = q.toLowerCase(); const f = FOODS.find(x => x[4].split('|').some(s => q.includes(s)));
+            if (!f) return 'Я знаю не все продукты. Попробуйте спросить про: ' + FOODS.slice(0, 8).map(x => x[0].split(',')[0].toLowerCase()).join(', ') + '. В полной версии список будет шире.';
+            const v = verdict(f), det = act().map(k => `${M[k].n.toLowerCase()}: ${f[{ s: 1, na: 2, p: 3 }[k]]} ${M[k].u}`).join(', ');
+            return `${f[0]} — ${det}.\n${v.t}`
+        }
+        function chat() {
+            $('#tb').innerHTML = `<div class="card c4"><h3>Спросить о продукте</h3><div class="msgs" id="ms">${S.chat.length ? S.chat.map(m => `<div class="m ${m.r}">${esc(m.t)}</div>`).join('') : '<div class="m b">Спросите, можно ли вам тот или иной продукт. Я учту ваши диагнозы.</div>'}</div>
+ <div>${['Можно ли сельдь?', 'А пиво?', 'Что с яблоком?', 'Гречка подойдёт?'].map(s => `<button class="chip" onclick="ask('${s}')">${s}</button>`).join('')}</div>
+ <div class="f" style="margin-top:8px"><input id="cq" placeholder="Например: можно ли мне колбасу?" onkeydown="if(event.key=='Enter')ask()"><button class="btn" onclick="ask()">Спросить</button></div>
+ <p class="mut" style="font-size:.85rem;margin:10px 0 0">Ответы строятся по встроенному справочнику. Это справка, а не медицинская рекомендация.</p></div>`; const m = $('#ms'); m.scrollTop = m.scrollHeight
+        }
+        function ask(t) { t = t || $('#cq').value.trim(); if (!t) return; S.chat.push({ r: 'u', t }, { r: 'b', t: reply(t) }); S.chat = S.chat.slice(-30); save(); shell() }
+
+        function bmi(w) { const b = w / Math.pow(S.p.h / 100, 2); return { b: b.toFixed(1), c: b < 18.5 ? 'ниже справочного диапазона' : b < 25 ? 'в справочном диапазоне ВОЗ (18,5–24,9)' : b < 30 ? 'выше справочного диапазона (избыточная масса)' : 'выше справочного диапазона (ожирение)' } }
+
+        M.s.c = 'c3'; M.na.c = 'c2'; M.p.c = 'c4';
+        FOODS.push(["Лосось запечённый, 100 г", 0, 60, 170, "лосос|сёмг|семг"], ["Рис варёный, 150 г", 0.5, 5, 25, "рис"], ["Картофель варёный, 150 г", 1.5, 10, 30, "картоф"], ["Помидор, 150 г", 4, 10, 17, "помидор|томат"], ["Банан, 1 шт.", 14, 1, 10, "банан"], ["Молоко, 250 мл", 12, 100, 15, "молок"], ["Сыр твёрдый, 30 г", 0, 200, 10, "сыр"], ["Чай с сахаром, 250 мл", 10, 5, 0, "чай"], ["Говядина, 100 г", 0, 70, 130, "говяд|мясо"], ["Свинина, 100 г", 0, 65, 120, "свинин"], ["Грибы, 100 г", 3, 10, 100, "гриб"], ["Чечевица варёная, 150 г", 2, 5, 100, "чечевиц|бобов|фасол"], ["Йогурт натуральный, 150 г", 6, 70, 10, "йогурт"], ["Яблочный сок, 250 мл", 25, 10, 15, "сок"], ["Грецкие орехи, 30 г", 1, 1, 25, "орех"], ["Капуста тушёная, 150 г", 4, 300, 10, "капуст"]);
+        const MEALS = ['Завтрак', 'Обед', 'Ужин', 'Перекус'], KEYS = { s: 1, na: 2, p: 3 };
+        const VT = { s: { k: 'g', n: 'Глюкоза', u: 'ммоль/л' }, na: { k: 'bp', n: 'Давление', u: 'мм рт. ст.' }, p: { k: 'ua', n: 'Мочевая кислота', u: 'мкмоль/л' } };
+        let vd = today();
+        const fd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        const ds = n => { const d = new Date(); d.setDate(d.getDate() - n); return fd(d) };
+        const hi = () => { const h = new Date().getHours(); return h < 5 ? 'Доброй ночи' : h < 12 ? 'Доброе утро' : h < 18 ? 'Добрый день' : 'Добрый вечер' };
+        const tot = d => { const r = { s: 0, na: 0, p: 0 }; S.food.filter(f => f.d == d).forEach(f => { r.s += f.s; r.na += f.na; r.p += f.p }); return r };
+        const streak = () => { let i = S.food.some(f => f.d == ds(0)) ? 0 : 1, n = 0; while (S.food.some(f => f.d == ds(i))) { n++; i++ } return n };
+        function theme() { const d = document.documentElement, n = (d.dataset.theme || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light')) == 'dark' ? 'light' : 'dark'; d.dataset.theme = n; sv('eqori_theme', n) }
+        function ring(k, t) {
+            const m = M[k], v = t[k] || 0, pc = v / m.max, c = pc > 1 ? 'var(--bad)' : pc > .8 ? 'var(--warn)' : 'var(--ac)', C = 2 * Math.PI * 46;
+            return `<div class="rc ${m.c}"><svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-label="${m.n}: ${Math.round(v)} из ${m.max} ${m.u}"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(128,128,128,.25)" stroke-width="10"/><circle cx="55" cy="55" r="46" fill="none" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${(Math.min(pc, 1) * C).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 55 55)"/><text x="55" y="58" text-anchor="middle" font-size="22" font-weight="700" fill="currentColor">${Math.round(v)}</text><text x="55" y="75" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">из ${m.max}</text></svg><b>${m.n}</b><span class="mut">${m.u}</span></div>`
+        }
+
+        function shell() {
+            const T = [['day', 'Мой день'], ['food', 'Питание'], ['med', 'Лекарства'], ['vit', 'Показатели'], ['chat', 'Спросить'], ['w', 'Вес'], ['rep', 'Неделя'], ['me', 'Профиль']];
+            $('#appin').innerHTML = `<div class="appbar"><div><p class="mut" style="margin:0">${hi()},</p><h2 style="margin:0">${esc(S.name)}</h2></div><div>${S.p.dx.map(k => `<span class="pill">${DXN[k]}</span>`).join('')}</div></div>
+ <div class="tabs">${T.map(t => `<button class="tab ${tab == t[0] ? 'on' : ''}" onclick="tab='${t[0]}';shell()">${t[1]}</button>`).join('')}</div><div id="tb"></div>`;
+            ({ day, food, med, vit, chat, w, rep, me })[tab]()
+        }
+
+        function wiz(n) {
+            const c = $('#wz'), p = S.p; c.hidden = false;
+            const s1 = `<h3>Что вам поставил врач?</h3><p class="mut">Отметьте всё, что подходит. Диагноза пока нет или не уверены? Нажмите «Далее»: покажем все показатели.</p>${Object.keys(DXN).map(k => `<label class="chk"><input type="checkbox" class="dxc" value="${k}" ${p.dx.includes(k) ? 'checked' : ''}>${DXN[k]}</label>`).join('')}`;
+            const s2 = `<h3>Немного о вас</h3><p class="mut">Нужно для расчёта ИМТ. Всё необязательно.</p><label>Рост, см</label><input id="oh" type="number" value="${p.h || ''}"><label>Вес, кг</label><input id="ow" type="number" step="0.1" value="${(S.w.slice(-1)[0] || {}).w || ''}">`;
+            const s3 = `<h3>Чего вы хотите добиться?</h3>${['Понимать, что можно есть', 'Не забывать лекарства', 'Снизить вес', 'Следить за давлением и сахаром'].map(g => `<label class="chk"><input type="radio" name="gl" value="${g}" ${p.goal == g ? 'checked' : ''}>${g}</label>`).join('')}`;
+            c.innerHTML = `<div class="card"><p class="mut" style="margin:0 0 8px">Шаг ${n} из 3</p>${[s1, s2, s3][n - 1]}<div class="cta" style="justify-content:space-between"><button class="lk" onclick="wz(0)">Позже</button><button class="btn" onclick="wz(${n})">${n == 3 ? 'Готово' : 'Далее'}</button></div></div>`
+        }
+        function wz(n) {
+            if (n == 1) S.p.dx = [...document.querySelectorAll('.dxc:checked')].map(c => c.value);
+            if (n == 2) { const h = +$('#oh').value, w = +$('#ow').value; if (h) S.p.h = h; if (w) { S.w = S.w.filter(x => x.d != today()); S.w.push({ d: today(), w }) } }
+            if (n == 3) { const g = document.querySelector('[name=gl]:checked'); if (g) S.p.goal = g.value; S.p.done = 1 }
+            save(); if (n == 3 || n == 0) { $('#wz').hidden = true; shell() } else wiz(n + 1)
+        }
+
+        function nd(k) { const d = new Date(vd + 'T12:00:00'); d.setDate(d.getDate() + k); const x = fd(d); if (x <= today()) { vd = x; day() } }
+        function day() {
+            const t = tot(vd), a = act(), over = a.filter(k => t[k] > M[k].max), isT = vd == today(), tk = (S.taken[vd] || []).length, has = S.food.some(f => f.d == vd);
+            const msg = over.length ? `Лимит по показателю «${over.map(k => M[k].n.toLowerCase()).join('», «')}» превышен. Это не страшно: на следующий приём пищи выберите что-то полегче.` : has ? 'Вы в границах лимитов. Так держать.' : 'Записей пока нет. Добавьте приём пищи во вкладке «Питание».';
+            const sug = FOODS.filter(f => verdict(f).ok).sort((x, y) => a.reduce((q, k) => q + x[KEYS[k]] / M[k].max, 0) - a.reduce((q, k) => q + y[KEYS[k]] / M[k].max, 0)).slice(0, 4);
+            $('#tb').innerHTML = `${S.p.done ? '' : `<div class="setup"><div><h3>Настроим сайт под вас</h3><p>Минута — и покажем только важные для вас показатели. Можно пропустить и вернуться позже.</p></div><button class="btn" onclick="wiz(1)">Настроить</button></div>`}
+ <div class="dn"><button class="btn sec sm" onclick="nd(-1)" aria-label="Предыдущий день">‹</button><b>${isT ? 'Сегодня' : vd.split('-').reverse().join('.')}</b><button class="btn sec sm" onclick="nd(1)" ${isT ? 'disabled' : ''} aria-label="Следующий день">›</button></div>
+ <div class="rings">${a.map(k => ring(k, t)).join('')}</div>${isT ? dueHtml() : ''}
+ <div class="grid"><div class="card c1"><h3>Итог дня</h3><p>${msg}</p><p class="mut">Лекарства: ${tk} из ${S.meds.length}. Дней подряд с записями: ${streak()}.</p>${S.p.dx.length ? '' : '<p class="mut">Диагнозы не указаны, поэтому показаны все показатели.</p>'}</div>
+ <div class="card c2"><h3>Лёгкие варианты на следующий приём</h3>${sug.map(f => `<div class="item"><span>${f[0]}</span><span class="ok">подходит</span></div>`).join('')}</div></div>`
+        }
+
+        function food() {
+            const td = S.food.filter(f => f.d == today());
+            $('#tb').innerHTML = `<div class="card c1"><h3>Добавить приём пищи</h3><div class="f"><div style="max-width:160px"><label>Приём</label><select id="fm">${MEALS.map(m => `<option>${m}</option>`).join('')}</select></div><div><label>Поиск продукта</label><input id="fq2" placeholder="Например, рис" oninput="fl()"></div></div>
+ <div class="f" style="margin-top:6px"><div style="flex:3"><label>Продукт</label><select id="fs" onchange="fv()"></select></div><div style="max-width:100px"><label>Порций</label><select id="fq"><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select></div><button class="btn" onclick="addF()">Добавить</button></div><p id="fvd" style="margin:12px 0 0"></p>
+ <details style="margin-top:12px"><summary style="cursor:pointer">Нужного продукта нет в списке?</summary><div class="f" style="margin-top:8px"><input id="cn" placeholder="Название"><input id="cs" type="number" min="0" placeholder="Сахар, г"><input id="cna" type="number" min="0" placeholder="Натрий, мг"><input id="cp" type="number" min="0" placeholder="Пурины, мг"><button class="btn" onclick="addC()">Добавить</button></div></details></div>
+ <div class="card" style="margin-top:16px"><h3>Сегодня</h3>${MEALS.map(m => { const l = td.filter(f => (f.m || 'Перекус') == m); return l.length ? `<p class="mut" style="margin:12px 0 0">${m}</p>` + l.map(f => `<div class="item"><span>${esc(f.n)}<br><span class="mut" style="font-size:.85rem">сахар ${Math.round(f.s)} г · натрий ${Math.round(f.na)} мг · пурины ${Math.round(f.p)} мг</span></span><button class="btn sec sm" onclick="delF(${f.id})">Убрать</button></div>`).join('') : '' }).join('') || '<p class="mut">Пока пусто. Выберите продукт выше.</p>'}</div>${guide()}`; fl()
+        }
+        function fl() { const q = ($('#fq2').value || '').toLowerCase(), o = FOODS.map((f, i) => [f, i]).filter(x => x[0][0].toLowerCase().includes(q)); $('#fs').innerHTML = o.map(x => `<option value="${x[1]}">${x[0][0]}</option>`).join('') || '<option value="">Ничего не найдено</option>'; fv() }
+        function fv() { const i = $('#fs').value; if (i === '') { $('#fvd').textContent = ''; return } const v = verdict(FOODS[i]); $('#fvd').className = v.ok ? 'ok' : 'wn'; $('#fvd').textContent = v.t }
+        function addF() { const i = $('#fs').value; if (i === '') return; const f = FOODS[i], q = +$('#fq').value; S.food.push({ id: Date.now(), d: today(), m: $('#fm').value, n: f[0] + (q != 1 ? ' × ' + q : ''), s: f[1] * q, na: f[2] * q, p: f[3] * q }); save(); shell() }
+        function addC() { const n = $('#cn').value.trim(); if (!n) return; S.food.push({ id: Date.now(), d: today(), m: $('#fm').value, n, s: +$('#cs').value || 0, na: +$('#cna').value || 0, p: +$('#cp').value || 0 }); save(); shell() }
+        function delF(id) { S.food = S.food.filter(f => f.id != id); save(); shell() }
+        function guide() { const L = FOODS.map(f => [f, verdict(f)]).sort((a, b) => b[1].ok - a[1].ok); return `<div class="card c2" style="margin-top:16px"><h3>Справочник для вас</h3><p class="mut">Что подходит именно для ваших показателей.</p>${L.map(x => `<div class="item"><span>${x[0][0]}</span><span class="${x[1].ok ? 'ok' : 'wn'}">${x[1].ok ? 'подходит' : 'осторожно'}</span></div>`).join('')}</div>` }
+
+        function vst(v) {
+            if (v.k == 'bp') return v.a >= 180 || v.b >= 120 ? ['bd', 'Очень высокое. Срочно свяжитесь с врачом или вызовите скорую помощь.'] : v.a >= 140 || v.b >= 90 ? ['wn', 'Выше ориентира. Обсудите с врачом.'] : v.a < 90 || v.b < 60 ? ['wn', 'Ниже ориентира. При слабости или головокружении обратитесь к врачу.'] : ['ok', 'В пределах общего ориентира.'];
+            if (v.k == 'g') return v.a >= 13.9 || v.a < 3 ? ['bd', 'Значение требует внимания врача. Если плохо себя чувствуете, обратитесь за помощью.'] : v.a > 10 ? ['wn', 'Выше ориентира. Обсудите с врачом.'] : v.a < 3.9 ? ['wn', 'Ниже ориентира.'] : ['ok', 'В пределах общего ориентира.'];
+            return v.a > 420 ? ['wn', 'Выше ориентира. Обсудите с врачом.'] : ['ok', 'В пределах общего ориентира (до 420).']
+        }
+        function vit() {
+            $('#tb').innerHTML = `<div class="grid">${act().map(k => { const t = VT[k], L = S.v.filter(x => x.k == t.k).slice(-4).reverse(); return `<div class="card ${M[k].c}"><h3>${t.n}</h3><div class="f">${t.k == 'bp' ? `<input id="a_bp" type="number" placeholder="Верхнее"><input id="b_bp" type="number" placeholder="Нижнее">` : `<input id="a_${t.k}" type="number" step="0.1" placeholder="${t.u}">`}<button class="btn" onclick="addV('${t.k}')">Записать</button></div>${L.map(v => { const r = vst(v); return `<div class="item"><span><b>${v.a}${v.k == 'bp' ? '/' + v.b : ''}</b> ${t.u}<br><span class="${r[0]}" style="font-size:.85rem">${r[1]}</span></span><span class="mut" style="font-size:.85rem">${v.d.split('-').reverse().join('.')}</span></div>` }).join('') || '<p class="mut" style="margin-top:10px">Записей пока нет.</p>'}</div>` }).join('')}</div>
+ <p class="mut" style="font-size:.85rem;margin-top:12px">Ориентиры общие и справочные. Целевые значения для вас определяет врач.</p>`}
+        function addV(k) { const a = +$('#a_' + k).value, b = k == 'bp' ? +$('#b_bp').value : 0; if (!a || (k == 'bp' && !b)) return; S.v.push({ id: Date.now(), d: today(), k, a, b }); save(); shell() }
+
+        function w() {
+            const ws = S.w.slice().sort((a, b) => a.d.localeCompare(b.d)), l = ws[ws.length - 1], r = l && S.p.h ? bmi(l.w) : null;
+            let svg = ''; if (ws.length > 1) { const v = ws.map(x => x.w), mn = Math.min(...v) - 1, mx = Math.max(...v) + 1, p = ws.map((x, i) => `${(i / (ws.length - 1) * 280 + 10).toFixed(0)},${(110 - (x.w - mn) / (mx - mn) * 100).toFixed(0)}`).join(' '); svg = `<svg class="sv" viewBox="0 0 300 120" preserveAspectRatio="none"><polyline points="${p}" fill="none" stroke="var(--ac)" stroke-width="3"/></svg>` }
+            $('#tb').innerHTML = `<div class="card c2"><h3>Динамика веса</h3><div class="f"><div><label>Вес, кг</label><input id="wv" type="number" step="0.1" value="${l ? l.w : ''}"></div><button class="btn" onclick="addW()">Записать</button></div>${l ? `<p style="margin-top:14px">Сейчас ${l.w} кг${r ? ` · ИМТ ${r.b}: ${r.c}.` : '. Укажите рост в профиле, чтобы увидеть ИМТ.'}</p>` : '<p class="mut" style="margin-top:12px">Записей пока нет.</p>'}${svg}<p class="mut" style="font-size:.85rem">ИМТ справочный и не является оценкой вашего состояния.</p>${ws.slice(-5).reverse().map(x => `<div class="item"><span>${x.d.split('-').reverse().join('.')}</span><b>${x.w} кг</b></div>`).join('')}</div>`
+        }
+        function addW() { const v = +$('#wv').value; if (!v) return; S.w = S.w.filter(x => x.d != today()); S.w.push({ d: today(), w: v }); save(); shell() }
+
+        function rep() {
+            const d7 = [...Array(7)].map((_, i) => ds(i)), lg = d7.filter(d => S.food.some(f => f.d == d)), tk = d7.reduce((x, d) => x + (S.taken[d] || []).length, 0), pl = S.meds.length * 7;
+            const chart = k => {
+                const vs = d7.slice().reverse().map(d => tot(d)[k]), mx = Math.max(M[k].max, ...vs) * 1.05, ly = (70 - M[k].max / mx * 66).toFixed(1), av = lg.length ? Math.round(lg.reduce((x, d) => x + tot(d)[k], 0) / lg.length) : 0;
+                return `<div class="card ${M[k].c}"><h3>${M[k].n}</h3><svg viewBox="0 0 210 76" class="sv">${vs.map((v, i) => `<rect x="${i * 30 + 4}" y="${(70 - v / mx * 66).toFixed(1)}" width="22" height="${Math.max(2, v / mx * 66).toFixed(1)}" rx="6" fill="${v > M[k].max ? 'var(--warn)' : 'var(--ac)'}"/>`).join('')}<line x1="0" x2="210" y1="${ly}" y2="${ly}" stroke="currentColor" stroke-dasharray="3 3" opacity=".5"/></svg><p class="mut" style="margin:0;font-size:.9rem">В среднем ${av} ${M[k].u} в день (ориентир ${M[k].max}). Пунктир — ориентир.</p></div>`
+            };
+            $('#tb').innerHTML = `<div class="card c1"><h3>Ваша неделя</h3><p>Записи за ${lg.length} из 7 дней.${lg.length ? ' Это уже хороший шаг.' : ' Начать никогда не поздно.'}</p>${pl ? `<p>Лекарства: отмечено ${tk} приёмов из ${pl} возможных.</p>` : ''}<p class="mut" style="margin:0">Отчёт без оценок: это просто картина недели. Обсудите её с врачом на ближайшем приёме.</p></div><div class="grid" style="margin-top:16px">${act().map(chart).join('')}</div>`
+        }
+
+        function me() {
+            $('#tb').innerHTML = `<div class="grid"><div class="card c1"><h3>Профиль</h3><p><b>${esc(S.name)}</b><br><span class="mut">${esc(em)}</span></p><p>Диагнозы: ${S.p.dx.length ? S.p.dx.map(k => DXN[k]).join(', ') : 'не указаны'}</p><p>Рост: ${S.p.h || '—'} см${S.p.goal ? '<br>Цель: ' + esc(S.p.goal) : ''}</p><button class="btn" onclick="wiz(1)">Изменить</button></div>
+ <div class="card c3"><h3>Настройки</h3><p><button class="btn sec" onclick="theme()">Сменить тему</button></p><p><button class="btn sec" onclick="logout()">Выйти</button></p><p><button class="btn sec" onclick="if(confirm('Удалить все записи? Аккаунт останется.')){S=Object.assign(dflt(),{name:S.name});save();tab='day';boot()}">Удалить мои записи</button></p></div></div>`}
+        { const th = ld('eqori_theme', null); if (th) document.documentElement.dataset.theme = th }
+        $('#demoR').innerHTML = ring('s', { s: 31 }) + ring('na', { na: 1720 }) + ring('p', { p: 140 });
+
+        $('#modal').addEventListener('click', e => { if (e.target.id == 'modal') closeM() });
+        boot(); nav(); setInterval(tick, 30000);
+    </script>
+</body>
+
+</html>
